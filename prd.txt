@@ -57,76 +57,21 @@ ML	PyTorch / TensorFlow	CNN model for deep eye-state detection
 
 🧮 8. Algorithms
 Eye Aspect Ratio (EAR):
-E
-A
-R
-=
-∣
-∣
-p
-2
-−
-p
-6
-∣
-∣
-+
-∣
-∣
-p
-3
-−
-p
-5
-∣
-∣
-2
-×
-∣
-∣
-p
-1
-−
-p
-4
-∣
-∣
-EAR= 
-2×∣∣p1−p4∣∣
-∣∣p2−p6∣∣+∣∣p3−p5∣∣
-​	
+EAR = (‖p2 − p6‖ + ‖p3 − p5‖) / (2 × ‖p1 − p4‖)
  
 Threshold: EAR < 0.25 for 15–20 frames → Eyes closed
 Mouth Aspect Ratio (MAR):
-M
-A
-R
-=
-∣
-∣
-p
-3
-−
-p
-9
-∣
-∣
-∣
-∣
-p
-1
-−
-p
-7
-∣
-∣
-MAR= 
-∣∣p1−p7∣∣
-∣∣p3−p9∣∣
-​	
+MAR = ‖p3 − p9‖ / ‖p1 − p7‖
  
 Threshold: MAR > 0.6 → Yawning detected
-+ ML CNN
+Optional: Lightweight CNN for eye-state classification to complement EAR.
+
+9. Non-Functional Requirements
+Performance: Real-time processing at ≥ 10 FPS on typical laptop hardware.
+Privacy: All processing on-device; no video frames leave the machine.
+Reliability: Use debouncing and consecutive-frame thresholds to avoid spurious alerts.
+Portability: Works with built-in webcams and common USB cameras (macOS/Windows/Linux).
+Usability: Minimal UI with clear alert feedback and start/stop controls.
 
 🧾 10. Success Metrics
 Metric	Target
@@ -143,8 +88,6 @@ Different head angles	Medium	Add head pose estimation
 False positives (blink = drowsy)	Medium	Use consecutive-frame logic
 Processing lag	Low	Optimize with multithreading, smaller frame size
 
-
+12. Future Enhancements
 Deep CNN model trained on drowsy/alert datasets.
 Integration with IoT/Car Systems (e.g., brake/seat vibration).
-
-
