@@ -136,3 +136,15 @@ Real-Time FPS	≥ 10 FPS
 Latency	≤ 300ms
 Power Efficiency	Suitable for laptop/car camera use
 
+⚡ 11. Risks & Mitigations
+Risk	Impact	Mitigation
+Poor lighting affects accuracy	High	Use histogram equalization, adaptive thresholding
+Different head angles	Medium	Add head pose estimation
+False positives (blink = drowsy)	Medium	Use consecutive-frame logic
+Processing lag	Low	Optimize with multithreading, smaller frame size
+
+
+Deep CNN model trained on drowsy/alert datasets.
+Integration with IoT/Car Systems (e.g., brake/seat vibration).
+
+
