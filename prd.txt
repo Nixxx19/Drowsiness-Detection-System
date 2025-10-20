@@ -32,6 +32,9 @@ Offline Functionality	Should not rely on internet connectivity	⭐⭐⭐
 UX/UI	Dashboard View	Display EAR, MAR, and state (alert/drowsy) in a small UI	⭐⭐
 Scalability	Plug-and-Play	Should work with a normal webcam or USB camera	⭐⭐⭐
 
+ML	Deep CNN Eye-State Model	Complements EAR for robustness in low-light/occlusions	⭐⭐⭐
+Integration	Vehicle IoT/Feedback	Triggers seat vibration/buzzer via GPIO/serial when drowsy	⭐⭐
+
 🧰 6. Technology Stack
 Layer	Technology	Description
 Programming	Python 3.x	Core development language
@@ -88,6 +91,3 @@ Different head angles	Medium	Add head pose estimation
 False positives (blink = drowsy)	Medium	Use consecutive-frame logic
 Processing lag	Low	Optimize with multithreading, smaller frame size
 
-12. Future Enhancements
-Deep CNN model trained on drowsy/alert datasets.
-Integration with IoT/Car Systems (e.g., brake/seat vibration).
