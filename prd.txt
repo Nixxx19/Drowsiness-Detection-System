@@ -1,4 +1,4 @@
-Project: Driver Drowsiness Detection System
+Driver Drowsiness Detection System
 
 🏁 1. Overview
 The Driver Drowsiness Detection System aims to enhance road safety by identifying signs of fatigue in drivers through real-time video analysis. The system uses a webcam (or in-vehicle camera) to monitor the driver’s facial landmarks, detecting eye blinks, prolonged eye closure, and yawning as indicators of drowsiness. When detected, the system triggers visual and/or auditory alerts to wake the driver.
