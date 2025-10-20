@@ -10,3 +10,24 @@ Secondary Goals:
 Implement a lightweight, camera-based detection system without requiring external sensors.
 Maintain high accuracy across lighting and face-angle variations.
 Operate in real-time (≥ 10 FPS).
+
+👥 3. Target Users
+User Type	Description	Needs
+Individual Drivers	Car and truck drivers who drive for long durations	Need an alert when drowsiness occurs
+Fleet Companies	Organizations managing multiple vehicles	Require monitoring to prevent fatigue-related accidents
+Automobile OEMs	Manufacturers seeking safety feature integrations	Want embedded ML solution for smart vehicles
+
+🔍 4. Problem Statement
+Drowsy driving causes thousands of accidents annually. Manual monitoring is impractical, and existing commercial systems are expensive. There is a need for a low-cost, camera-based ML system capable of detecting early signs of drowsiness in real time.
+
+⚙️ 5. Key Features & Requirements
+Category	Feature	Description	Priority
+Core Detection	Eye Blink & Closure	Detects prolonged eye closure using Eye Aspect Ratio (EAR)	⭐⭐⭐⭐
+Yawning Detection	Identifies mouth opening using Mouth Aspect Ratio (MAR)	⭐⭐⭐
+Head Pose Tracking	Detects head droop or tilt (optional enhancement)	⭐⭐
+Alert System	Audio Alarm	Plays alert sound when drowsiness detected	⭐⭐⭐⭐
+Visual Indicator	Displays on-screen warning	⭐⭐⭐
+Performance	Real-Time Processing	Must process at least 10 FPS	⭐⭐⭐⭐
+Offline Functionality	Should not rely on internet connectivity	⭐⭐⭐
+UX/UI	Dashboard View	Display EAR, MAR, and state (alert/drowsy) in a small UI	⭐⭐
+Scalability	Plug-and-Play	Should work with a normal webcam or USB camera	⭐⭐⭐
