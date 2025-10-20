@@ -63,10 +63,10 @@ Drowsy driving causes thousands of accidents annually. Manual monitoring is impr
 ```
 
 ### 8. Algorithms
-- **Eye Aspect Ratio (EAR)**: \( \text{EAR} = \frac{\lVert p_2 - p_6 \rVert + \lVert p_3 - p_5 \rVert}{2\,\lVert p_1 - p_4 \rVert} \)
+- **Eye Aspect Ratio (EAR)**: `EAR = (|p2 - p6| + |p3 - p5|) / (2 * |p1 - p4|)`
   - Threshold: EAR < 0.25 for 15–20 consecutive frames → Eyes closed
 
-- **Mouth Aspect Ratio (MAR)**: \( \text{MAR} = \frac{\lVert p_3 - p_9 \rVert}{\lVert p_1 - p_7 \rVert} \)
+- **Mouth Aspect Ratio (MAR)**: `MAR = |p3 - p9| / |p1 - p7|`
   - Threshold: MAR > 0.6 → Yawning detected
 
 - **Optional**: Lightweight CNN for eye-state classification to complement EAR under challenging conditions (low light, occlusions).
