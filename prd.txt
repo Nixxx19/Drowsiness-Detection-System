@@ -31,3 +31,13 @@ Performance	Real-Time Processing	Must process at least 10 FPS	⭐⭐⭐⭐
 Offline Functionality	Should not rely on internet connectivity	⭐⭐⭐
 UX/UI	Dashboard View	Display EAR, MAR, and state (alert/drowsy) in a small UI	⭐⭐
 Scalability	Plug-and-Play	Should work with a normal webcam or USB camera	⭐⭐⭐
+
+🧰 6. Technology Stack
+Layer	Technology	Description
+Programming	Python 3.x	Core development language
+CV Library	OpenCV	Image/video capture and processing
+ML Library	Dlib	Facial landmark detection
+Math & Utils	SciPy, NumPy, Imutils	EAR/MAR computation, geometry
+Alert System	Pygame / Playsound	Audio alerts
+ML	PyTorch / TensorFlow	CNN model for deep eye-state detection
+
