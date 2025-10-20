@@ -41,3 +41,98 @@ Math & Utils	SciPy, NumPy, Imutils	EAR/MAR computation, geometry
 Alert System	Pygame / Playsound	Audio alerts
 ML	PyTorch / TensorFlow	CNN model for deep eye-state detection
 
+🔄 7. System Workflow
+
+[Start Webcam Feed]
+      ↓
+[Face Detection → Landmark Extraction]
+      ↓
+[Calculate EAR (Eyes) & MAR (Mouth)]
+      ↓
+[Threshold Comparison → Drowsiness Check]
+      ↓
+[If Drowsy → Trigger Alert]
+      ↓
+[Log or Display State on Dashboard]
+
+🧮 8. Algorithms
+Eye Aspect Ratio (EAR):
+E
+A
+R
+=
+∣
+∣
+p
+2
+−
+p
+6
+∣
+∣
++
+∣
+∣
+p
+3
+−
+p
+5
+∣
+∣
+2
+×
+∣
+∣
+p
+1
+−
+p
+4
+∣
+∣
+EAR= 
+2×∣∣p1−p4∣∣
+∣∣p2−p6∣∣+∣∣p3−p5∣∣
+​	
+ 
+Threshold: EAR < 0.25 for 15–20 frames → Eyes closed
+Mouth Aspect Ratio (MAR):
+M
+A
+R
+=
+∣
+∣
+p
+3
+−
+p
+9
+∣
+∣
+∣
+∣
+p
+1
+−
+p
+7
+∣
+∣
+MAR= 
+∣∣p1−p7∣∣
+∣∣p3−p9∣∣
+​	
+ 
+Threshold: MAR > 0.6 → Yawning detected
++ ML CNN
+
+🧾 10. Success Metrics
+Metric	Target
+Detection Accuracy	≥ 90% on test dataset
+False Alarm Rate	≤ 5%
+Real-Time FPS	≥ 10 FPS
+Latency	≤ 300ms
+Power Efficiency	Suitable for laptop/car camera use
+
