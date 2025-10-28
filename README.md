@@ -1,4 +1,4 @@
-# 🚗 Driver Drowsiness Detection System
+#  Driver Drowsiness Detection System
 
 Real-time, camera-based monitoring to detect driver fatigue using facial landmarks and optional deep learning, with on-device processing and immediate alerts.
 
