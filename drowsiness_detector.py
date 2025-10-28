@@ -12,9 +12,12 @@ import time
 import threading
 from collections import deque
 import logging
+import os
+from config import *
 
 # Configure logging
-logging.basicConfig(level=logging.INFO)
+log_level = getattr(logging, LOG_LEVEL.upper(), logging.INFO)
+logging.basicConfig(level=log_level)
 logger = logging.getLogger(__name__)
 
 class DrowsinessDetector:
