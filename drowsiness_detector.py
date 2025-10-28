@@ -27,11 +27,11 @@ class DrowsinessDetector:
         self.landmark_predictor = None
         self.cap = None
         
-        # Detection parameters
-        self.EAR_THRESHOLD = 0.25
-        self.MAR_THRESHOLD = 0.6
-        self.CONSECUTIVE_FRAMES = 15
-        self.ALERT_DURATION = 3.0  # seconds
+        # Detection parameters from config
+        self.EAR_THRESHOLD = EAR_THRESHOLD
+        self.MAR_THRESHOLD = MAR_THRESHOLD
+        self.CONSECUTIVE_FRAMES = CONSECUTIVE_FRAMES
+        self.ALERT_DURATION = ALERT_DURATION
         
         # State tracking
         self.ear_history = deque(maxlen=self.CONSECUTIVE_FRAMES)
@@ -49,9 +49,16 @@ class DrowsinessDetector:
         # Initialize pygame for audio alerts
         pygame.mixer.init()
         
-    def load_landmark_predictor(self, predictor_path):
+    def load_landmark_predictor(self, predictor_path=None):
         """Load the facial landmark predictor model"""
+        if predictor_path is None:
+            predictor_path = MODEL_PATH
+            
         try:
+            if not os.path.exists(predictor_path):
+                logger.error(f"Model file not found: {predictor_path}")
+                return False
+                
             self.landmark_predictor = dlib.shape_predictor(predictor_path)
             logger.info("Facial landmark predictor loaded successfully")
             return True
