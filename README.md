@@ -27,7 +27,7 @@ A real-time drowsiness detection system that uses computer vision and machine le
 ### Quick Setup
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/Nixxx19/Drowsiness-Detection-System.git
 cd drowsiness-detection-system
 
 # Run the setup script
