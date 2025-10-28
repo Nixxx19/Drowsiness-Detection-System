@@ -224,9 +224,10 @@ class DrowsinessDetector:
                 else:
                     self.yawn_frames = 0
             
-            # Draw landmarks on frame
-            for landmark in landmarks:
-                cv2.circle(frame, (landmark.x, landmark.y), 1, (0, 255, 0), -1)
+            # Draw landmarks on frame (if enabled)
+            if SHOW_LANDMARKS:
+                for landmark in landmarks:
+                    cv2.circle(frame, (landmark.x, landmark.y), 1, (0, 255, 0), -1)
             
             # Draw face rectangle
             x, y, w, h = face.left(), face.top(), face.width(), face.height()
@@ -234,8 +235,11 @@ class DrowsinessDetector:
         
         return frame, drowsiness_detected, yawn_detected, ear_value, mar_value
     
-    def run(self, camera_index=0):
+    def run(self, camera_index=None):
         """Main application loop"""
+        if camera_index is None:
+            camera_index = CAMERA_INDEX
+            
         self.cap = cv2.VideoCapture(camera_index)
         
         if not self.cap.isOpened():
@@ -243,14 +247,14 @@ class DrowsinessDetector:
             return
         
         # Set camera properties for better performance
-        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
-        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
-        self.cap.set(cv2.CAP_PROP_FPS, 30)
+        self.cap.set(cv2.CAP_PROP_FRAME_WIDTH, FRAME_WIDTH)
+        self.cap.set(cv2.CAP_PROP_FRAME_HEIGHT, FRAME_HEIGHT)
+        self.cap.set(cv2.CAP_PROP_FPS, TARGET_FPS)
         
         logger.info("Starting drowsiness detection system...")
         logger.info("Press 'q' to quit, 's' to toggle sound alerts")
         
-        sound_enabled = True
+        sound_enabled = SOUND_ENABLED
         
         while True:
             ret, frame = self.cap.read()
