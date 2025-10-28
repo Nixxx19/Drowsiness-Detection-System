@@ -131,12 +131,15 @@ class DrowsinessDetector:
     
     def play_alert_sound(self):
         """Play alert sound in a separate thread"""
+        if not SOUND_ENABLED:
+            return
+            
         def play_sound():
             try:
-                # Generate a simple beep sound
+                # Generate a simple beep sound using config parameters
                 sample_rate = 22050
-                duration = 0.5
-                frequency = 800
+                duration = ALERT_SOUND_DURATION
+                frequency = ALERT_SOUND_FREQUENCY
                 
                 frames = int(duration * sample_rate)
                 arr = np.zeros(frames)
