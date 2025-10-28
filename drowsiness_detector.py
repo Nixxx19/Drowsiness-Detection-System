@@ -284,17 +284,22 @@ class DrowsinessDetector:
                 self.alert_active = False
             
             # Draw status information
-            status_color = (0, 0, 255) if (drowsiness or yawn) else (0, 255, 0)
-            status_text = "DROWSY!" if (drowsiness or yawn) else "AWAKE"
+            if VISUAL_ALERTS:
+                status_color = (0, 0, 255) if (drowsiness or yawn) else (0, 255, 0)
+                status_text = "DROWSY!" if (drowsiness or yawn) else "AWAKE"
+                
+                cv2.putText(processed_frame, status_text, (10, 30), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 1, status_color, 2)
             
-            cv2.putText(processed_frame, status_text, (10, 30), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 1, status_color, 2)
-            cv2.putText(processed_frame, f"EAR: {ear:.3f}", (10, 70), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-            cv2.putText(processed_frame, f"MAR: {mar:.3f}", (10, 100), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
-            cv2.putText(processed_frame, f"FPS: {self.current_fps}", (10, 130), 
-                       cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 2)
+            if SHOW_METRICS:
+                cv2.putText(processed_frame, f"EAR: {ear:.3f}", (10, 70), 
+                           cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, (255, 255, 255), FONT_THICKNESS)
+                cv2.putText(processed_frame, f"MAR: {mar:.3f}", (10, 100), 
+                           cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, (255, 255, 255), FONT_THICKNESS)
+            
+            if SHOW_FPS:
+                cv2.putText(processed_frame, f"FPS: {self.current_fps}", (10, 130), 
+                           cv2.FONT_HERSHEY_SIMPLEX, FONT_SCALE, (255, 255, 255), FONT_THICKNESS)
             
             # Show frame
             cv2.imshow('Drowsiness Detection System', processed_frame)
@@ -317,11 +322,9 @@ def main():
     detector = DrowsinessDetector()
     
     # Try to load the landmark predictor
-    predictor_path = "shape_predictor_68_face_landmarks.dat"
-    if not detector.load_landmark_predictor(predictor_path):
+    if not detector.load_landmark_predictor():
         logger.error("Please download the facial landmark predictor model:")
-        logger.error("wget http://dlib.net/files/shape_predictor_68_face_landmarks.dat.bz2")
-        logger.error("bunzip2 shape_predictor_68_face_landmarks.dat.bz2")
+        logger.error("python download_model.py")
         return
     
     # Start the detection system
