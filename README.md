@@ -1,26 +1,29 @@
-# Driver Drowsiness Detection System
+# Advanced CNN-based Driver Drowsiness Detection System
 
-A real-time drowsiness detection system that uses computer vision and machine learning to monitor driver alertness through facial landmark analysis. This system helps prevent accidents caused by driver fatigue by providing immediate alerts when drowsiness is detected.
+A sophisticated real-time drowsiness detection system powered by deep learning and computer vision. This system uses multiple CNN models, ensemble methods, and advanced machine learning techniques to accurately monitor driver alertness and prevent accidents caused by driver fatigue.
 
 ## 🚀 Features
 
-- **Real-time Detection**: Monitors driver's face in real-time using webcam
-- **Eye Blink Detection**: Uses Eye Aspect Ratio (EAR) to detect prolonged eye closure
-- **Yawning Detection**: Detects yawning through Mouth Aspect Ratio (MAR) analysis
-- **Audio Alerts**: Plays warning sounds when drowsiness is detected
-- **Visual Feedback**: On-screen indicators showing system status and metrics
-- **High Performance**: Optimized for real-time processing (≥10 FPS)
-- **Cross-platform**: Works on macOS, Windows, and Linux
+- **Multi-Model CNN Architecture**: Uses ensemble of EfficientNet, ResNet, and custom CNN models
+- **Advanced Eye State Classification**: Deep learning-based eye state detection with attention mechanisms
+- **Temporal Sequence Analysis**: LSTM-based temporal modeling for drowsiness pattern recognition
+- **Transfer Learning**: Leverages pre-trained models for robust feature extraction
+- **Real-time Processing**: Optimized for real-time inference (≥10 FPS)
+- **Ensemble Methods**: Combines multiple models for improved accuracy and reliability
+- **Data Augmentation**: Advanced augmentation techniques for model robustness
+- **Cross-validation**: Comprehensive model evaluation and selection
+- **Visual Analytics**: Real-time confidence visualization and model performance metrics
 - **Privacy-focused**: All processing happens locally on your device
 
 ## 🛠 Technology Stack
 
 - **Python 3.x**: Core programming language
+- **TensorFlow/Keras**: Deep learning framework
 - **OpenCV**: Computer vision and image processing
-- **dlib**: Facial landmark detection
-- **NumPy/SciPy**: Mathematical computations
+- **NumPy/SciPy**: Mathematical computations and scientific computing
 - **Pygame**: Audio alert system
-- **SciPy**: Distance calculations for EAR/MAR
+- **Matplotlib/Seaborn**: Data visualization and analytics
+- **Scikit-learn**: Machine learning utilities and evaluation metrics
 
 ## 📦 Installation
 
@@ -139,13 +142,17 @@ The system is optimized for real-time performance:
 
 ```
 drowsiness-detection-system/
-├── drowsiness_detector.py      # Main application
-├── download_model.py           # Model download script
-├── setup.py                    # Setup script
-├── test_detection.py           # Test suite
-├── requirements.txt            # Python dependencies
-├── README.md                   # This file
-└── shape_predictor_68_face_landmarks.dat  # Facial landmark model
+├── cnn_drowsiness_detector.py      # Main CNN-based application
+├── advanced_training_pipeline.py   # Advanced training pipeline
+├── config.py                       # Configuration settings
+├── demo.py                         # Interactive demo
+├── run.py                          # Smart launcher
+├── test_detection.py               # Test suite
+├── setup.py                        # Setup script
+├── requirements.txt                # Python dependencies
+├── install.sh                      # Linux/macOS installation
+├── install.bat                     # Windows installation
+└── README.md                       # This file
 ```
 
 ## 🔬 Testing

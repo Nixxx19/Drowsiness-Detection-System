@@ -50,7 +50,7 @@ class AdvancedDataGenerator:
         self.data_dir = data_dir
         self.img_size = img_size
         self.batch_size = batch_size
-        self.class_names = ['alert', 'drowsy', 'normal']
+        self.class_names = ['awake', 'drowsy']  # Updated for real dataset
         
         # Advanced augmentation parameters
         self.augmentation_params = {
@@ -95,7 +95,7 @@ class AdvancedDataGenerator:
 class MultiModelEnsemble:
     """Ensemble of multiple CNN models for robust prediction"""
     
-    def __init__(self, input_shape=(224, 224, 3), num_classes=3):
+    def __init__(self, input_shape=(224, 224, 3), num_classes=2):  # Updated for 2 classes
         self.input_shape = input_shape
         self.num_classes = num_classes
         self.models = {}
@@ -410,7 +410,7 @@ class AdvancedTrainingPipeline:
         accuracy = np.mean(predicted_labels == true_labels)
         
         # Classification report
-        class_names = ['alert', 'drowsy', 'normal']
+        class_names = ['awake', 'drowsy']  # Updated for real dataset
         report = classification_report(true_labels, predicted_labels, 
                                     target_names=class_names, output_dict=True)
         
@@ -487,8 +487,8 @@ class AdvancedTrainingPipeline:
             cm = np.array(self.results['ensemble']['confusion_matrix'])
             plt.figure(figsize=(8, 6))
             sns.heatmap(cm, annot=True, fmt='d', cmap='Blues', 
-                       xticklabels=['alert', 'drowsy', 'normal'],
-                       yticklabels=['alert', 'drowsy', 'normal'])
+                       xticklabels=['awake', 'drowsy'],
+                       yticklabels=['awake', 'drowsy'])
             plt.title('Ensemble Confusion Matrix')
             plt.ylabel('True Label')
             plt.xlabel('Predicted Label')
@@ -550,29 +550,24 @@ def create_sample_dataset():
     logger.info("Creating sample dataset...")
     
     # Create directories
-    os.makedirs("dataset/alert", exist_ok=True)
+    os.makedirs("dataset/awake", exist_ok=True)
     os.makedirs("dataset/drowsy", exist_ok=True)
-    os.makedirs("dataset/normal", exist_ok=True)
     
     # Create synthetic images
-    for class_name in ['alert', 'drowsy', 'normal']:
+    for class_name in ['awake', 'drowsy']:
         for i in range(100):  # 100 images per class
             # Create synthetic face image
             img = np.random.randint(50, 200, (224, 224, 3), dtype=np.uint8)
             
             # Add class-specific features
-            if class_name == 'alert':
+            if class_name == 'awake':
                 # Wide open eyes
                 cv2.ellipse(img, (80, 100), (15, 25), 0, 0, 360, (255, 255, 255), -1)
                 cv2.ellipse(img, (144, 100), (15, 25), 0, 0, 360, (255, 255, 255), -1)
-            elif class_name == 'drowsy':
+            else:  # drowsy
                 # Half-closed eyes
                 cv2.ellipse(img, (80, 100), (15, 10), 0, 0, 360, (100, 100, 100), -1)
                 cv2.ellipse(img, (144, 100), (15, 10), 0, 0, 360, (100, 100, 100), -1)
-            else:  # normal
-                # Normal eyes
-                cv2.ellipse(img, (80, 100), (15, 20), 0, 0, 360, (200, 200, 200), -1)
-                cv2.ellipse(img, (144, 100), (15, 20), 0, 0, 360, (200, 200, 200), -1)
             
             # Save image
             img_path = f"dataset/{class_name}/{class_name}_{i:03d}.png"

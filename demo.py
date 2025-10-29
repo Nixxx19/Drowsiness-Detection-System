@@ -7,7 +7,7 @@ Shows the system capabilities and provides interactive testing
 import cv2
 import time
 import numpy as np
-from drowsiness_detector import DrowsinessDetector
+from cnn_drowsiness_detector import AdvancedCNNDrowsinessDetector
 import logging
 
 # Configure logging
@@ -20,7 +20,7 @@ def demo_ear_calculation():
     print("EAR (Eye Aspect Ratio) Calculation Demo")
     print("="*60)
     
-    detector = DrowsinessDetector()
+    detector = AdvancedCNNDrowsinessDetector()
     
     # Simulate different eye states
     eye_states = [
@@ -53,7 +53,7 @@ def demo_mar_calculation():
     print("MAR (Mouth Aspect Ratio) Calculation Demo")
     print("="*60)
     
-    detector = DrowsinessDetector()
+    detector = AdvancedCNNDrowsinessDetector()
     
     # Simulate different mouth states
     mouth_states = [
@@ -115,7 +115,7 @@ def demo_performance_test():
     print("Performance Test Demo")
     print("="*60)
     
-    detector = DrowsinessDetector()
+    detector = AdvancedCNNDrowsinessDetector()
     
     # Create test frames of different sizes
     test_sizes = [(320, 240), (640, 480), (1280, 720)]
@@ -157,7 +157,7 @@ def interactive_demo():
     response = input("\nStart interactive demo? (y/n): ").lower().strip()
     
     if response == 'y':
-        detector = DrowsinessDetector()
+        detector = AdvancedCNNDrowsinessDetector()
         
         if not detector.load_landmark_predictor():
             print("❌ Could not load facial landmark model")
