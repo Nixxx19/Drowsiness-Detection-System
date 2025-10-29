@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 def check_dependencies():
     """Check if all required dependencies are installed"""
     required_packages = [
-        'cv2', 'dlib', 'numpy', 'scipy', 'pygame'
+        'cv2', 'tensorflow', 'numpy', 'scipy', 'pygame'
     ]
     
     missing_packages = []
@@ -24,8 +24,8 @@ def check_dependencies():
         try:
             if package == 'cv2':
                 import cv2
-            elif package == 'dlib':
-                import dlib
+            elif package == 'tensorflow':
+                import tensorflow
             elif package == 'numpy':
                 import numpy
             elif package == 'scipy':
@@ -43,19 +43,22 @@ def check_dependencies():
     return True
 
 def check_model():
-    """Check if the facial landmark model exists"""
-    model_path = "shape_predictor_68_face_landmarks.dat"
+    """Check if CNN models exist"""
+    model_paths = [
+        "eye_state_cnn_model.h5",
+        "sequence_model.h5", 
+        "face_analysis_model.h5"
+    ]
     
-    if not os.path.exists(model_path):
-        logger.error("Facial landmark model not found")
-        logger.info("Please run: python download_model.py")
-        return False
+    missing_models = []
+    for model_path in model_paths:
+        if not os.path.exists(model_path):
+            missing_models.append(model_path)
     
-    # Check if file is not empty
-    if os.path.getsize(model_path) < 1000000:  # Less than 1MB
-        logger.error("Facial landmark model appears to be corrupted")
-        logger.info("Please re-download: python download_model.py")
-        return False
+    if missing_models:
+        logger.warning(f"CNN models not found: {', '.join(missing_models)}")
+        logger.info("Models will be created automatically on first run")
+        return True  # Allow to continue, models will be created
     
     return True
 
@@ -107,7 +110,7 @@ def main():
     
     # Launch the main application
     try:
-        from drowsiness_detector import main as detector_main
+        from cnn_drowsiness_detector import main as detector_main
         detector_main()
     except KeyboardInterrupt:
         logger.info("Application interrupted by user")
