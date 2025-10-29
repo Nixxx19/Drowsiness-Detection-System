@@ -21,8 +21,8 @@ class SimpleDrowsinessDetector:
         self.eye_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_eye.xml')
         
         # Detection parameters
-        self.EYE_CLOSED_THRESHOLD = 0.3  # Ratio of eye area to face area
-        self.CONSECUTIVE_FRAMES = 10     # Frames to confirm drowsiness
+        self.EYE_CLOSED_THRESHOLD = 0.1  # Ratio of eye area to face area (lowered for better sensitivity)
+        self.CONSECUTIVE_FRAMES = 15     # Frames to confirm drowsiness (increased for stability)
         self.ALERT_DURATION = 3.0        # Alert duration in seconds
         
         # State tracking
@@ -83,6 +83,9 @@ class SimpleDrowsinessDetector:
             
             # Calculate eye ratio
             eye_ratio = self.calculate_eye_ratio(face, eyes_absolute)
+            
+            # Debug information
+            logger.debug(f"Face area: {face[2] * face[3]}, Eyes found: {len(eyes_absolute)}, Eye ratio: {eye_ratio:.3f}")
             
             # Check for drowsiness (low eye ratio indicates closed eyes)
             if eye_ratio < self.EYE_CLOSED_THRESHOLD:
